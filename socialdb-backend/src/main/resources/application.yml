@@ -1,0 +1,37 @@
+server:
+    port: 8080
+
+application:
+    config:
+        user-agent: <custom-user-agent>
+
+spring:
+    datasource:
+        driverClassName: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://localhost:3306/socialdb
+        username: root
+        password: root
+    jpa:
+        show_sql: true
+        generate-ddl: false
+    hibernate:
+        ddl-auto: none
+        naming-strategy: org.hibernate.cfg.EJB3NamingStrategy
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    security:
+        oauth2:
+            client:
+                registration:
+                    reddit:
+                        client-name: Reddit
+                        client-id: <client-id>
+                        client-secret: <client-secret>
+                        authorization-grant-type: authorization_code
+                        redirect-uri: http://localhost:8080/login/oauth2/code/reddit
+                        scope: identity, account, edit, flair, history, read, mysubreddits, privatemessages
+                provider:
+                    reddit:
+                        authorization-uri: https://ssl.reddit.com/api/v1/authorize
+                        token-uri: https://ssl.reddit.com/api/v1/access_token
+                        user-info-uri: https://oauth.reddit.com/api/v1/me
+                        userNameAttribute: id
