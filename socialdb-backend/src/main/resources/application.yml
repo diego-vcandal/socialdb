@@ -1,5 +1,9 @@
 server:
     port: 8080
+    servlet:
+        session:
+            cookie:
+                max-age: 168h
 
 application:
     config:
