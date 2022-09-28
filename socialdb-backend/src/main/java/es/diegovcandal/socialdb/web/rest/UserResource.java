@@ -9,8 +9,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -61,6 +63,23 @@ public class UserResource {
 						Object.class);
 
 		response.addCookie(restUtils.deleteSessionCookie());
+
+	}
+
+	@GetMapping(value = "/{userName}/saved-posts")
+	@ResponseStatus(HttpStatus.OK)
+	public Object getSavedPosts(OAuth2AuthenticationToken authentication, @PathVariable String userName,
+			@RequestParam(required = false) String after, @RequestParam(required = false) String before)
+			throws NotAuthorizedException {
+
+		String token = restUtils.getToken(authentication);
+
+		String baseUrl = ProyectConstants.REDDIT_BASE_OAUTH_URL + "user/" + userName + "/saved";
+
+		return restUtils.doExchange(
+				baseUrl + (after != null ? restUtils.addParam("after", after, true)
+						: restUtils.addParam("before", before, false)),
+				HttpMethod.GET, restUtils.getHeaders(token), Object.class).getBody();
 
 	}
 

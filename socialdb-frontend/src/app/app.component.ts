@@ -3,6 +3,7 @@ import { UserService } from 'src/service/user.service';
 import { Constants } from './constants';
 import { CookieService } from 'ngx-cookie-service';
 import { Globals } from './globals';
+import { PostComponent } from './components/common-components/post/post.component';
 
 // TODO: substituir console.log por logger
 
@@ -28,6 +29,22 @@ export class AppComponent {
     ngOnInit() {
 
         this.getIdentity();
+
+        this.userService.getSavedPosts().subscribe({
+            next: (response) => {
+              if (response.status === 200) {
+                console.log(response)
+                this.savedPostsDone = true;
+                this.savedPosts = response.body.data.children;
+              }
+            },
+            error: (error) => {
+              if (error.status === 401) {
+                console.log(error)
+              }
+            },
+            complete: () => console.log("Request AppComponent.getSavedPosts() completed")
+          })
     }
 
     doAuthorize() {

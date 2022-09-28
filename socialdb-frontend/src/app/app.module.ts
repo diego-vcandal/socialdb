@@ -4,16 +4,18 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Globals } from './globals';
-import { CookieService } from 'ngx-cookie-service';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from './components/base-components/header/header.component';
 import { Constants } from './constants';
 import { CRSFInterceptorService } from 'src/service/csrf-interceptor.service';
+
+import { HeaderComponent } from './components/base-components/header/header.component';
+import { PostComponent } from './components/common-components/post/post.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        HeaderComponent
+        HeaderComponent,
+        PostComponent
     ],
     imports: [
         BrowserModule,

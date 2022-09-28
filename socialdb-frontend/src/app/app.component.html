@@ -519,9 +519,8 @@
     <div *ngIf="savedPostsDone">
 
     </div>
-    <div *ngFor="let post of savedPosts">
-        <p>{{post.data.url}}</p>
-        <img [src]="post.data.url" />
+    <div *ngFor="let post of savedPosts" class="col-10">
+        <app-post [postData]="post.data"></app-post>
     </div>
 
     <!-- Footer -->

@@ -1,0 +1,58 @@
+<div class="row post-container m-2">
+
+    <div class="col-2">
+        test col 1
+    </div>
+
+    <div class="col">
+        <p>{{postData.url}}</p>
+        <p>{{mediaType}}</p>
+
+
+        <div *ngIf="mediaType === 'image'">
+            <img [src]="postData.url" class="post-media" hidden>
+        </div>
+
+        <div *ngIf="mediaType === 'carousel'">
+            <div [id]="postData.id + '_carousel'" class="carousel slide" [attr.data-bs-ride]="postData.id + '_carousel'"
+                data-bs-touch="false">
+
+                <div class="carousel-inner">
+                    <div [class]=" (i == 0 ? 'active ' : '') + 'carousel-item' "
+                        *ngFor="let url of carouselArray; let i = index">
+                        <img [src]="url" class="post-media">
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button"
+                    [attr.data-bs-target]="'#' + postData.id + '_carousel'" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                    [attr.data-bs-target]="'#' + postData.id + '_carousel'" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+
+        <div *ngIf="mediaType === 'iframe'" #iframeContainer>
+            <div [style]="iframeStyle">
+                <iframe [src]="safeUrl" frameborder='0' scrolling='no' [width]="width" [height]="height" allowfullscreen
+                    class="post-media"></iframe>
+            </div>
+        </div>
+
+        <div *ngIf="mediaType === 'video'">
+            <video [src]="videoUrl" autoplay loop muted controls hidden></video>
+        </div>
+
+    </div>
+
+    <div class="col-2">
+        test col 3
+    </div>
+
+</div>

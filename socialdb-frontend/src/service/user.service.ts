@@ -24,4 +24,9 @@ export class UserService {
         return this.http.post<any>("http://localhost:8080/api/user/logout", {}, { headers: ServiceUtils.setHttpHeader(), withCredentials: true, observe: 'response' })
     }
 
+    public getSavedPosts(): Observable<HttpResponse<any>> {
+        return this.http.get<any>("http://localhost:8080/api/user/reithkor/saved-posts", { headers: ServiceUtils.setHttpHeader(), withCredentials: true, observe: 'response' })
+    }
+    
+
 }

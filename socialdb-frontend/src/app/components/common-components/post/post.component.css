@@ -1,0 +1,8 @@
+.post-container {
+    border: 1px solid #b1b1b1;
+    border-radius: 0.5rem;
+}
+
+.post-media {
+    max-width: 100%;
+}
