@@ -1,3 +1,4 @@
+import { RedditPreview } from "./preview.reddit"
 import { RedditSecureMedia } from "./secure-media.reddit"
 
 export interface RedditPost {
@@ -18,5 +19,5 @@ export interface RedditPost {
     secure_media: RedditSecureMedia
     is_gallery: boolean
     media_metadata: Object
-
+    preview: RedditPreview
 }

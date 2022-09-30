@@ -29,22 +29,7 @@ export class AppComponent {
     ngOnInit() {
 
         this.getIdentity();
-
-        this.userService.getSavedPosts().subscribe({
-            next: (response) => {
-              if (response.status === 200) {
-                console.log(response)
-                this.savedPostsDone = true;
-                this.savedPosts = response.body.data.children;
-              }
-            },
-            error: (error) => {
-              if (error.status === 401) {
-                console.log(error)
-              }
-            },
-            complete: () => console.log("Request AppComponent.getSavedPosts() completed")
-          })
+        
     }
 
     doAuthorize() {
@@ -71,6 +56,7 @@ export class AppComponent {
                 if (response.status === 200) {
                     this.globals.authorized = true;
                     this.globals.redditIdentity = response.body;
+                    this.loadData();
                 }
             },
             error: (error) => {
@@ -80,6 +66,26 @@ export class AppComponent {
             },
             complete: () => console.log("Request AppComponent.getIdentity() completed")
         })
+    }
+
+    loadData() {
+        if (this.globals.redditIdentity) {
+            this.userService.getSavedPosts(this.globals.redditIdentity.name).subscribe({
+                next: (response) => {
+                    if (response.status === 200) {
+                        console.log(response)
+                        this.savedPostsDone = true;
+                        this.savedPosts = response.body.data.children;
+                    }
+                },
+                error: (error) => {
+                    if (error.status === 401) {
+                        console.log(error)
+                    }
+                },
+                complete: () => console.log("Request AppComponent.getSavedPosts() completed")
+            })
+        }
     }
 
 }
