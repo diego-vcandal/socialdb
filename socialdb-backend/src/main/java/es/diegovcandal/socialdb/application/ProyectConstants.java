@@ -14,4 +14,6 @@ public class ProyectConstants {
 
 	public static final String CSRF_HEADER_NAME = "X-XSRF-TOKEN";
 
+	public static final String DEFAULT_PASSWORD = "password";
+
 }
