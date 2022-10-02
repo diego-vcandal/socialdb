@@ -1,6 +1,7 @@
 package es.diegovcandal.socialdb.oauth2;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,6 +22,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestOperations;
 
 import es.diegovcandal.socialdb.application.AppConfig;
+import es.diegovcandal.socialdb.domain.Authority;
+import es.diegovcandal.socialdb.domain.User;
+import es.diegovcandal.socialdb.repository.CustomAuthorityRepository;
+import es.diegovcandal.socialdb.service.CustomUserDetailsService;
 
 @Component
 @Configurable
@@ -28,10 +33,15 @@ public class RestOAuth2UserService implements OAuth2UserService<OAuth2UserReques
 
 	private AppConfig appConfig;
 	private RestOperations restOperations;
+	private CustomAuthorityRepository authorityRepository;
+	private CustomUserDetailsService customUserDetailsService;
 
-	public RestOAuth2UserService(RestOperations restOperations, AppConfig testAutowire) {
+	public RestOAuth2UserService(RestOperations restOperations, AppConfig appConfig,
+			CustomAuthorityRepository authorityRepository, CustomUserDetailsService customUserDetailsService) {
 		this.restOperations = restOperations;
-		this.appConfig = testAutowire;
+		this.appConfig = appConfig;
+		this.authorityRepository = authorityRepository;
+		this.customUserDetailsService = customUserDetailsService;
 	}
 
 	@Override
@@ -50,6 +60,15 @@ public class RestOAuth2UserService implements OAuth2UserService<OAuth2UserReques
 
 		Map<String, Object> userAttributes = responseEntity.getBody();
 		Set<GrantedAuthority> authorities = Collections.singleton(new OAuth2UserAuthority(userAttributes));
+
+		Set<Authority> userAuthorities = new HashSet<>();
+		for (GrantedAuthority authority : authorities) {
+			Authority au = new Authority(authority.getAuthority());
+			userAuthorities.add(authorityRepository.save(au));
+		}
+
+		customUserDetailsService.create(
+				new User(userAttributes.get("id").toString(), userAttributes.get("name").toString(), userAuthorities));
 
 		return new DefaultOAuth2User(authorities, userAttributes, userRequest.getClientRegistration()
 				.getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName());
