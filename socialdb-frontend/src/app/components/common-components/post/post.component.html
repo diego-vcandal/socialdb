@@ -1,5 +1,8 @@
 <div class="row post-container m-2">
 
+    <button (click)="showContent()">show</button>
+    <button (click)="test()">test</button>
+
     <div class="col-2">
         test col 1
     </div>
@@ -8,19 +11,19 @@
         <p>{{postData.url}}</p>
         <p>{{mediaType}}</p>
 
-
-        <div *ngIf="mediaType === 'image'">
-            <img [src]="postData.url" class="post-media">
+        <div *ngIf="mediaType === 'image' && !isHiddenContent && !loaded" #imageContainer [class]="testclass" [hidden]="isHiddenContent && loaded">
+            <img [src]="postData.url" class="post-media" (load)="testCarga()">
         </div>
 
-        <div *ngIf="mediaType === 'carousel'">
+        <div *ngIf="mediaType === 'carousel'&& !isHiddenContent" #imageContainer [class]="testclass" [hidden]="isHiddenContent && loaded">
             <div [id]="postData.id + '_carousel'" class="carousel slide" [attr.data-bs-ride]="postData.id + '_carousel'"
                 data-bs-touch="false">
 
                 <div class="carousel-inner">
                     <div [class]=" (i == 0 ? 'active ' : '') + 'carousel-item' "
                         *ngFor="let url of carouselArray; let i = index">
-                        <img [src]="url" class="post-media">
+                        <button (click)="test(i)" class="test-margin">test</button>
+                        <img [src]="url" class="post-media" (load)="testCarga(i)">
                     </div>
                 </div>
 
@@ -38,15 +41,15 @@
         </div>
 
 
-        <div *ngIf="mediaType === 'iframe'" #iframeContainer>
+        <div *ngIf="mediaType === 'iframe'&& !isHiddenContent" #iframeContainer [hidden]="isHiddenContent && loaded">
             <div [style]="iframeStyle">
-                <iframe [src]="safeUrl" frameborder='0' scrolling='no' [width]="width" [height]="height" allowfullscreen
-                    [attr.allow]="allow" class="post-media"></iframe>
+                <iframe [src]="safeUrl" frameborder='0' scrolling='no' [width]="iframeWidth" [height]="iframeHeight"
+                    allowfullscreen [attr.allow]="allow" class="post-media"></iframe>
             </div>
         </div>
 
-        <div *ngIf="mediaType === 'video'">
-            <video [src]="videoUrl" autoplay loop muted [controls]="videoControls" class="post-media"></video>
+        <div *ngIf="mediaType === 'video'&& !isHiddenContent" [hidden]="isHiddenContent && loaded">
+            <video [src]="videoUrl" autoplay loop muted [controls]="videoControls"></video>
         </div>
 
         <div *ngIf="mediaType === 'link'">
