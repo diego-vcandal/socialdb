@@ -11,11 +11,12 @@
         <p>{{postData.url}}</p>
         <p>{{mediaType}}</p>
 
-        <div *ngIf="mediaType === 'image' && !isHiddenContent && !loaded" #imageContainer [class]="testclass" [hidden]="isHiddenContent && loaded">
+        <div *ngIf="mediaType === 'image' && loaded" #imageContainer [class]="testclass" [hidden]="isHiddenContent">
             <img [src]="postData.url" class="post-media" (load)="testCarga()">
         </div>
 
-        <div *ngIf="mediaType === 'carousel'&& !isHiddenContent" #imageContainer [class]="testclass" [hidden]="isHiddenContent && loaded">
+        <div *ngIf="mediaType === 'carousel'&& !isHiddenContent" #imageContainer [class]="testclass"
+            [hidden]="isHiddenContent">
             <div [id]="postData.id + '_carousel'" class="carousel slide" [attr.data-bs-ride]="postData.id + '_carousel'"
                 data-bs-touch="false">
 
@@ -41,14 +42,14 @@
         </div>
 
 
-        <div *ngIf="mediaType === 'iframe'&& !isHiddenContent" #iframeContainer [hidden]="isHiddenContent && loaded">
+        <div *ngIf="mediaType === 'iframe' && loaded" #iframeContainer [hidden]="isHiddenContent">
             <div [style]="iframeStyle">
                 <iframe [src]="safeUrl" frameborder='0' scrolling='no' [width]="iframeWidth" [height]="iframeHeight"
                     allowfullscreen [attr.allow]="allow" class="post-media"></iframe>
             </div>
         </div>
 
-        <div *ngIf="mediaType === 'video'&& !isHiddenContent" [hidden]="isHiddenContent && loaded">
+        <div *ngIf="mediaType === 'video' && loaded" [hidden]="isHiddenContent">
             <video [src]="videoUrl" autoplay loop muted [controls]="videoControls"></video>
         </div>
 

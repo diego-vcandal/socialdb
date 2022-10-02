@@ -47,10 +47,6 @@ export class PostComponent implements OnInit {
 
     testCarga(id?: number) {
 
-        if (!this.loaded) {
-            this.loaded = true;
-        }
-
         if (this.mediaType === 'image') {
             console.log("hei:  " + this.imageContainer.nativeElement.scrollHeight)
             if (this.imageContainer.nativeElement.scrollHeight > 300) {
@@ -103,6 +99,9 @@ export class PostComponent implements OnInit {
             this.isHiddenContent = true;
         } else {
             this.isHiddenContent = false;
+            if (!this.loaded) {
+                this.loaded = true;
+            }
         }
     }
 
