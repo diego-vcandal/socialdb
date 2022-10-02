@@ -5,8 +5,6 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.trace.http.HttpTraceRepository;
 import org.springframework.boot.actuate.trace.http.InMemoryHttpTraceRepository;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcOperations;
@@ -17,6 +15,8 @@ import org.springframework.security.oauth2.client.JdbcOAuth2AuthorizedClientServ
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
@@ -30,6 +30,8 @@ import es.diegovcandal.socialdb.oauth2.CustomAuthorizationRequestResolver;
 import es.diegovcandal.socialdb.oauth2.RestOAuth2AccessTokenResponseClient;
 import es.diegovcandal.socialdb.oauth2.RestOAuth2UserService;
 import es.diegovcandal.socialdb.oauth2.config.RedditOAuth2Config;
+import es.diegovcandal.socialdb.repository.CustomAuthorityRepository;
+import es.diegovcandal.socialdb.service.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity(debug = false)
@@ -43,6 +45,15 @@ public class SecurityConfig {
 
 	@Autowired
 	private ClientRegistrationRepository clientRegistrationRepository;
+
+	@Autowired
+	private CustomAuthorityRepository authorityRepository;
+
+	@Autowired
+	private CustomUserDetailsService customUserDetailsService;
+
+	@Autowired
+	private DataSource dataSource;
 
 	// @formatter:off
 	@Bean
@@ -65,7 +76,7 @@ public class SecurityConfig {
 				)
 				.oauth2Login().tokenEndpoint().accessTokenResponseClient(new RestOAuth2AccessTokenResponseClient(restTemplate(), appConfig, redditOAuth2Config))
 			.and()
-				.userInfoEndpoint().userService(new RestOAuth2UserService(restTemplate(), appConfig))
+				.userInfoEndpoint().userService(new RestOAuth2UserService(restTemplate(), appConfig, authorityRepository, customUserDetailsService))
 			.and()
 				.defaultSuccessUrl("http://localhost:4200/socialdb", true)
 				.failureUrl("http://localhost:4200/socialdb")
@@ -111,13 +122,7 @@ public class SecurityConfig {
 
 	@Bean
 	public JdbcOperations jdbcOperations() {
-		return new JdbcTemplate(getDataSource());
-	}
-
-	@ConfigurationProperties(prefix = "spring.datasource")
-	@Bean
-	public DataSource getDataSource() {
-		return DataSourceBuilder.create().build();
+		return new JdbcTemplate(dataSource);
 	}
 
 	@Bean
@@ -125,6 +130,13 @@ public class SecurityConfig {
 		HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
 		repository.setHeaderName(ProyectConstants.CSRF_HEADER_NAME);
 		return repository;
+	}
+
+	@Bean
+	public PersistentTokenRepository persistentTokenRepository() {
+		JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
+		db.setDataSource(dataSource);
+		return db;
 	}
 
 }
