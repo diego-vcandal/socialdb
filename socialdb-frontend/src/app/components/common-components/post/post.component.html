@@ -50,7 +50,7 @@
         </div>
 
         <div *ngIf="mediaType === 'video' && loaded" [hidden]="isHiddenContent">
-            <video [src]="videoUrl" autoplay loop muted [controls]="videoControls"></video>
+            <video [src]="videoUrl" autoplay loop muted [controls]="videoControls" class="post-media"></video>
         </div>
 
         <div *ngIf="mediaType === 'link'">

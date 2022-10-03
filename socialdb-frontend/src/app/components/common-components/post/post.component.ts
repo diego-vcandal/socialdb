@@ -48,12 +48,10 @@ export class PostComponent implements OnInit {
     testCarga(id?: number) {
 
         if (this.mediaType === 'image') {
-            console.log("hei:  " + this.imageContainer.nativeElement.scrollHeight)
             if (this.imageContainer.nativeElement.scrollHeight > 300) {
                 this.baseHeigh = this.imageContainer.nativeElement.scrollHeight;
             }
         } else if (this.mediaType === 'carousel') {
-            console.log('test gallery: ' + this.imageContainer.nativeElement.offsetHeight)
             if (this.imageContainer.nativeElement.scrollHeight > 300) {
                 this.carouselTestArray.push({ id: id, baseHeigh: this.imageContainer.nativeElement.scrollHeight })
             }
@@ -64,13 +62,10 @@ export class PostComponent implements OnInit {
         if (this.mediaType === 'image') {
 
             if (this.baseHeigh >= 300) {
-                console.log(this.open)
                 if (!this.open) {
-                    console.log("si")
                     this.open = true;
                     this.testclass = '';
                 } else {
-                    console.log("no")
                     this.open = false;
                     this.testclass = 'post-media-container';
                 }
@@ -79,13 +74,10 @@ export class PostComponent implements OnInit {
         } else if (this.mediaType === 'carousel') {
             let entry = this.carouselTestArray.filter(e => id === e.id)[0]
             if (entry.baseHeigh >= 300) {
-                console.log(this.open)
                 if (!this.open) {
-                    console.log("si")
                     this.open = true;
                     this.testclass = '';
                 } else {
-                    console.log("no")
                     this.open = false;
                     this.testclass = 'post-media-container';
                 }
@@ -95,20 +87,19 @@ export class PostComponent implements OnInit {
     }
 
     showContent() {
+
         if (!this.isHiddenContent) {
             this.isHiddenContent = true;
         } else {
             this.isHiddenContent = false;
             if (!this.loaded) {
                 this.loaded = true;
+
+                setTimeout(() => {
+                    this.resizeIframe();
+                }, 0);
             }
         }
-    }
-
-    ngAfterViewInit() {
-        setTimeout(() => {
-            this.resizeIframe();
-        }, 0);
     }
 
     @HostListener('window:resize', ['$event'])
@@ -161,8 +152,7 @@ export class PostComponent implements OnInit {
 
     private loadIframeData(oembed: RedditOembed, url: string, type: string): string {
         let newUrl = url;
-
-        this.aspectRatio = oembed.height / oembed.width;
+        this.aspectRatio = oembed.width / oembed.height;
         this.iframeStyle = '';
 
         if (type === 'youtube.com') {
@@ -178,7 +168,7 @@ export class PostComponent implements OnInit {
 
     private resizeIframe() {
         if (this.iframeContainer) {
-            this.iframeHeight = (this.aspectRatio * this.iframeContainer.nativeElement.offsetWidth).toString();
+            this.iframeHeight = ((this.iframeContainer.nativeElement.offsetWidth / this.aspectRatio) + (this.postData.url.includes('gfycat.com') ? 44 : 0)).toString();
         }
     }
 
