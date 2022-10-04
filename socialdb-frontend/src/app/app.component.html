@@ -520,7 +520,7 @@
 
     </div>
     <div *ngFor="let post of savedPosts" class="col-10">
-        <app-post [postData]="post.data"></app-post>
+        <app-image-post [postData]="post.data" *ngIf="post.data.post_hint === 'image'"></app-image-post>
     </div>
 
     <!-- Footer -->

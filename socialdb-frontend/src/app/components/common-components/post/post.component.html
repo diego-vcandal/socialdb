@@ -1,7 +1,7 @@
 <div class="row post-container m-2">
 
     <button (click)="showContent()">show</button>
-    <button (click)="test()">test</button>
+
 
     <div class="col-2">
         test col 1
@@ -11,10 +11,13 @@
         <p>{{postData.url}}</p>
         <p>{{mediaType}}</p>
 
+        <!--
         <div *ngIf="mediaType === 'image' && loaded" #imageContainer [class]="testclass" [hidden]="isHiddenContent">
-            <img [src]="postData.url" class="post-media" (load)="testCarga()">
+            <button (click)="test()">test</button>
+            <img [src]="postData.url" class="post-media image-media" (load)="testCarga()" (click)="openUrl()">
         </div>
-
+        -->
+        
         <div *ngIf="mediaType === 'carousel'&& !isHiddenContent" #imageContainer [class]="testclass"
             [hidden]="isHiddenContent">
             <div [id]="postData.id + '_carousel'" class="carousel slide" [attr.data-bs-ride]="postData.id + '_carousel'"

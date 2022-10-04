@@ -10,12 +10,14 @@ import { CRSFInterceptorService } from 'src/service/csrf-interceptor.service';
 
 import { HeaderComponent } from './components/base-components/header/header.component';
 import { PostComponent } from './components/common-components/post/post.component';
+import { ImagePostComponent } from './components/common-components/post/image-post/image-post.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
-        PostComponent
+        PostComponent,
+        ImagePostComponent
     ],
     imports: [
         BrowserModule,

@@ -15,3 +15,7 @@
 .test-margin {
     margin-left: 100px;
 }
+
+.image-media {
+    cursor: pointer;
+}

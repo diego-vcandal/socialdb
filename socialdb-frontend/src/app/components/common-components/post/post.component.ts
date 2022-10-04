@@ -45,6 +45,10 @@ export class PostComponent implements OnInit {
         this.getType();
     }
 
+    openUrl() {
+        window.open(this.postData.url, '_blank');
+    }
+
     testCarga(id?: number) {
 
         if (this.mediaType === 'image') {
@@ -87,14 +91,14 @@ export class PostComponent implements OnInit {
     }
 
     showContent() {
-
+        
         if (!this.isHiddenContent) {
             this.isHiddenContent = true;
         } else {
             this.isHiddenContent = false;
             if (!this.loaded) {
                 this.loaded = true;
-
+                
                 setTimeout(() => {
                     this.resizeIframe();
                 }, 0);
@@ -167,8 +171,8 @@ export class PostComponent implements OnInit {
     }
 
     private resizeIframe() {
-        if (this.iframeContainer) {
-            this.iframeHeight = ((this.iframeContainer.nativeElement.offsetWidth / this.aspectRatio) + (this.postData.url.includes('gfycat.com') ? 44 : 0)).toString();
+        if (this.iframeContainer){
+            this.iframeHeight = ((this.iframeContainer.nativeElement.offsetWidth / this.aspectRatio) + (this.postData.url.includes('gfycat.com') ? 44 : 0) ).toString();
         }
     }
 
