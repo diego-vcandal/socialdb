@@ -18,7 +18,7 @@ export class Constants {
     public static MEDIA_TYPE_VIDEO = 'video';
     public static MEDIA_TYPE_IFRAME = 'iframe';
     public static MEDIA_TYPE_IMAGE = 'image';
-    public static MEDIA_TYPE_CAROUSEL = 'carousel';
+    public static MEDIA_TYPE_GALLERY = 'gallery';
     public static MEDIA_TYPE_LINK = 'link';
     public static MEDIA_TYPE_NO_CONTENT = 'no_content';
 

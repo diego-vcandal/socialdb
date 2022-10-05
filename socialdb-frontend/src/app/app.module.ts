@@ -11,13 +11,19 @@ import { CRSFInterceptorService } from 'src/service/csrf-interceptor.service';
 import { HeaderComponent } from './components/base-components/header/header.component';
 import { PostComponent } from './components/common-components/post/post.component';
 import { ImagePostComponent } from './components/common-components/post/image-post/image-post.component';
+import { GalleryPostComponent } from './components/common-components/post/gallery-post/gallery-post.component';
+import { IframePostComponent } from './components/common-components/post/iframe-post/iframe-post.component';
+import { VideoPostComponent } from './components/common-components/post/video-post/video-post.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HeaderComponent,
         PostComponent,
-        ImagePostComponent
+        ImagePostComponent,
+        GalleryPostComponent,
+        IframePostComponent,
+        VideoPostComponent
     ],
     imports: [
         BrowserModule,

@@ -521,6 +521,8 @@
     </div>
     <div *ngFor="let post of savedPosts" class="col-10">
         <app-image-post [postData]="post.data" *ngIf="post.data.post_hint === 'image'"></app-image-post>
+        <app-gallery-post [postData]="post.data" *ngIf="post.data.is_gallery"></app-gallery-post>
+        <app-iframe-post [postData]="post.data" *ngIf="post.data.post_hint === 'rich:video'"></app-iframe-post>
     </div>
 
     <!-- Footer -->

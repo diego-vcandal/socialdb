@@ -1,0 +1,44 @@
+<div class="row post-container m-2">
+
+    <button (click)="showContent()">show</button>
+
+    <div class="col-2">
+        test col 1
+    </div>
+
+    <div class="col">
+        <p>{{postData.url}}</p>
+        <p>{{mediaType}}</p>
+
+        <div *ngIf="open" #imageContainer [class]="baseClass" [hidden]="isHiddenContent">
+            <div [id]="postData.id + '_carousel'" class="carousel slide" [attr.data-bs-ride]="postData.id + '_carousel'"
+                data-bs-touch="false">
+
+                <div class="carousel-inner">
+                    <div [class]=" (i == 0 ? 'active ' : '') + 'carousel-item' "
+                        *ngFor="let url of carouselArray; let i = index">
+                        <button (click)="calculateImageDimensions(i)" class="test-margin">test</button>
+                        <img [src]="url" class="post-media" (load)="loadImage(i)">
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button"
+                    [attr.data-bs-target]="'#' + postData.id + '_carousel'" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                    [attr.data-bs-target]="'#' + postData.id + '_carousel'" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-2">
+        test col 3
+    </div>
+
+</div>

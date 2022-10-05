@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Constants } from 'src/app/constants';
-import { ParentPostComponent } from '../../parent-post.component';
+import { ParentPostComponent } from '../parent-post.component';
 
 @Component({
     selector: 'app-image-post',

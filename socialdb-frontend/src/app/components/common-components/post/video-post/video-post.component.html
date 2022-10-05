@@ -2,7 +2,6 @@
 
     <button (click)="showContent()">show</button>
 
-
     <div class="col-2">
         test col 1
     </div>
@@ -11,16 +10,8 @@
         <p>{{postData.url}}</p>
         <p>{{mediaType}}</p>
 
-        <div *ngIf="mediaType === 'video' && loaded" [hidden]="isHiddenContent">
+        <div *ngIf="open" [hidden]="isHiddenContent">
             <video [src]="videoUrl" autoplay loop muted [controls]="videoControls" class="post-media"></video>
-        </div>
-
-        <div *ngIf="mediaType === 'link'">
-            <a [href]="postData.url">{{postData.url}}</a>
-        </div>
-
-        <div *ngIf="mediaType === 'no_content'">
-            <p> no content </p>
         </div>
 
     </div>
