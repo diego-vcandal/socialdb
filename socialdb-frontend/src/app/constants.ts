@@ -10,6 +10,9 @@ export class Constants {
     public static BACKEND_BASE_URL = 'localhost:8080/';
     public static BACKEND_API_USER_URL = 'api/user';
 
+    public static LANGUAGE_SPANISH = 'es';
+    public static LANGUAGE_ENGLISH = 'en';
+
     public static REDDIT_POST_HINT_HOSTED_VIDEO = 'hosted:video';
     public static REDDIT_POST_HINT_RICH_VIDEO = 'rich:video';
     public static REDDIT_POST_HINT_LINK = 'link';
@@ -24,5 +27,5 @@ export class Constants {
 
     public static MEDIA_TYPE_GIFV = '.gifv';
     public static MEDIA_TYPE_MP4 = '.mp4';
-
+    
 }

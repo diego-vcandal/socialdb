@@ -151,7 +151,7 @@
     "uuid" "8.3.2"
     "yargs" "17.4.1"
 
-"@angular/common@^14.0.0", "@angular/common@14.0.2":
+"@angular/common@^14.0.0", "@angular/common@>=13.0.0", "@angular/common@14.0.2":
   "integrity" "sha512-vNZpun9ymZEDJ0CWskTZZqCbuCumgYxbsZgp9nALnRAJt3fK8fRFgIZTn7smEXvbStL4PvngnvESa/t9Jd4wMg=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-14.0.2.tgz"
   "version" "14.0.2"
@@ -181,7 +181,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/core@^14.0.0", "@angular/core@14.0.2":
+"@angular/core@^14.0.0", "@angular/core@>=13.0.0", "@angular/core@14.0.2":
   "integrity" "sha512-JR+xVuNjGYEP5mdm3iQykcRFjrhSKbN5yxKxlVdKpNtUsR2Yc9Nf180Y2+Oo6KabtywGedIBH/Xd6mhwQQv3vg=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-14.0.2.tgz"
   "version" "14.0.2"
@@ -1277,6 +1277,20 @@
   "integrity" "sha512-TLR9v78GGM6uEKwYUAw2Hmpy+J0M8KF51ow/WKtCbpRko/ley5BYiBCwsaMWVv3o1yk/nT8fZeG+V3xZIXJcwA=="
   "resolved" "https://registry.npmjs.org/@ngtools/webpack/-/webpack-14.0.2.tgz"
   "version" "14.0.2"
+
+"@ngx-translate/core@^14.0.0", "@ngx-translate/core@>=14.0.0":
+  "integrity" "sha512-UevdwNCXMRCdJv//0kC8h2eSfmi02r29xeE8E9gJ1Al4D4jEJ7eiLPdjslTMc21oJNGguqqWeEVjf64SFtvw2w=="
+  "resolved" "https://registry.npmjs.org/@ngx-translate/core/-/core-14.0.0.tgz"
+  "version" "14.0.0"
+  dependencies:
+    "tslib" "^2.3.0"
+
+"@ngx-translate/http-loader@^7.0.0":
+  "integrity" "sha512-j+NpXXlcGVdyUNyY/qsJrqqeAdJdizCd+GKh3usXExSqy1aE9866jlAIL+xrfDU4w+LiMoma5pgE4emvFebZmA=="
+  "resolved" "https://registry.npmjs.org/@ngx-translate/http-loader/-/http-loader-7.0.0.tgz"
+  "version" "7.0.0"
+  dependencies:
+    "tslib" "^2.3.0"
 
 "@nodelib/fs.scandir@2.1.5":
   "integrity" "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="

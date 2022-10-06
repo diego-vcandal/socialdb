@@ -2,11 +2,17 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_BASE_HREF } from '@angular/common';
 import { AppComponent } from './app.component';
-import { HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Globals } from './globals';
 import { RouterModule } from '@angular/router';
 import { Constants } from './constants';
 import { CRSFInterceptorService } from 'src/service/csrf-interceptor.service';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
 
 import { HeaderComponent } from './components/base-components/header/header.component';
 import { ImagePostComponent } from './components/common-components/post/image-post/image-post.component';
@@ -32,6 +38,13 @@ import { DefaultPostComponent } from './components/common-components/post/defaul
         HttpClientXsrfModule.withOptions({
             cookieName: Constants.CSRF_COOKIE_NAME,
             headerName: Constants.CSRF_HEADER_NAME,
+        }),
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
         })
     ],
     providers: [
