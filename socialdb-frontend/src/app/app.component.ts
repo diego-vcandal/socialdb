@@ -3,6 +3,7 @@ import { UserService } from 'src/service/user.service';
 import { Constants } from './constants';
 import { CookieService } from 'ngx-cookie-service';
 import { Globals } from './globals';
+import { TranslateService } from '@ngx-translate/core';
 
 // TODO: substituir console.log por logger
 
@@ -20,9 +21,11 @@ export class AppComponent {
 
     constructor(
         private userService: UserService,
-        private cookieService: CookieService,
         public globals: Globals,
+        public translate: TranslateService
     ) {
+        this.translate.setDefaultLang(Constants.LANGUAGE_ENGLISH);
+        translate.use(this.globals.userLanguage);
     }
 
     ngOnInit() {

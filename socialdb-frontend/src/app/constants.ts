@@ -10,4 +10,7 @@ export class Constants {
     public static BACKEND_BASE_URL = 'localhost:8080/';
     public static BACKEND_API_USER_URL = 'api/user';
 
+    public static LANGUAGE_SPANISH = 'es';
+    public static LANGUAGE_ENGLISH = 'en';
+
 }

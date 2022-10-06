@@ -347,7 +347,7 @@
 
     </div>
 
-    <h2 [hidden]="this.globals.redditIdentity === null">Welcome, test!</h2>
+    <h2 [hidden]="this.globals.redditIdentity === null">{{ 'home.welcome' | translate }}, test!</h2>
 
     <button type="button" class="btn btn-primary btn-lg" (click)="doAuthorize()" tabindex="0"
         [hidden]="this.globals.authorized">Login</button>
