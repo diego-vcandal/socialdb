@@ -1,0 +1,25 @@
+<div class="row post-container m-2">
+
+    <div class="col-2">
+        test col 1
+    </div>
+
+    <div class="col">
+        <p>{{postData.url}}</p>
+        <p>{{mediaType}}</p>
+
+        <div *ngIf="mediaType === 'link'">
+            <a [href]="postData.url">{{postData.url}}</a>
+        </div>
+
+        <div *ngIf="mediaType === 'no_content'">
+            <p> no content </p>
+        </div>
+
+    </div>
+
+    <div class="col-2">
+        test col 3
+    </div>
+
+</div>

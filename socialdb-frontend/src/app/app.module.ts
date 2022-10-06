@@ -14,6 +14,7 @@ import { ImagePostComponent } from './components/common-components/post/image-po
 import { GalleryPostComponent } from './components/common-components/post/gallery-post/gallery-post.component';
 import { IframePostComponent } from './components/common-components/post/iframe-post/iframe-post.component';
 import { VideoPostComponent } from './components/common-components/post/video-post/video-post.component';
+import { DefaultPostComponent } from './components/common-components/post/default-post/default-post.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { VideoPostComponent } from './components/common-components/post/video-po
         ImagePostComponent,
         GalleryPostComponent,
         IframePostComponent,
-        VideoPostComponent
+        VideoPostComponent,
+        DefaultPostComponent
     ],
     imports: [
         BrowserModule,
