@@ -3,7 +3,6 @@ import { UserService } from 'src/service/user.service';
 import { Constants } from './constants';
 import { CookieService } from 'ngx-cookie-service';
 import { Globals } from './globals';
-import { PostComponent } from './components/common-components/post/post.component';
 
 // TODO: substituir console.log por logger
 

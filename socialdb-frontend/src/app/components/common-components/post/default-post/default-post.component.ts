@@ -6,7 +6,7 @@ import { ParentPostComponent } from '../parent-post.component';
 @Component({
     selector: 'app-default-post',
     templateUrl: './default-post.component.html',
-    styleUrls: ['./default-post.component.css', '../post.component.css']
+    styleUrls: ['./default-post.component.css', '../parent-post.component.css']
 })
 export class DefaultPostComponent extends ParentPostComponent {
 
