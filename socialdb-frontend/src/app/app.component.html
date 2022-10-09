@@ -335,7 +335,7 @@
             </g>
         </svg>
 
-        <span>{{ title }} app is running!</span>
+        <span>SocialDB app is running!</span>
 
         <svg id="rocket-smoke" xmlns="http://www.w3.org/2000/svg" width="516.119" height="1083.632"
             viewBox="0 0 516.119 1083.632">
@@ -347,7 +347,8 @@
 
     </div>
 
-    <h2 [hidden]="this.globals.redditIdentity === null">{{ 'home.welcome' | translate }}, {{globals.redditIdentity?.name}}!</h2>
+    <h2 [hidden]="this.globals.redditIdentity === null">{{ 'home.welcome' | translate }},
+        {{globals.redditIdentity?.name}}!</h2>
 
     <button type="button" class="btn btn-primary btn-lg" (click)="doAuthorize()" tabindex="0"
         [hidden]="this.globals.authorized">Login</button>
@@ -517,12 +518,14 @@
     </div>
 
     <div *ngIf="savedPostsDone">
-
-    </div>
-    <div *ngFor="let post of savedPosts" class="col-10">
-        <app-image-post [postData]="post.data" *ngIf="post.data.post_hint === 'image'"></app-image-post>
-        <app-gallery-post [postData]="post.data" *ngIf="post.data.is_gallery"></app-gallery-post>
-        <app-iframe-post [postData]="post.data" *ngIf="post.data.post_hint === 'rich:video'"></app-iframe-post>
+        <div *ngFor="let post of savedPosts" class="col-10">
+            <app-image-post [postData]="post" *ngIf="post.internalType === typeImage"></app-image-post>
+            <app-gallery-post [postData]="post" *ngIf="post.internalType === typeGallery"></app-gallery-post>
+            <app-iframe-post [postData]="post" *ngIf="post.internalType === typeIframe"></app-iframe-post>
+            <app-video-post [postData]="post" *ngIf="post.internalType === typeVideo"></app-video-post>
+            <app-default-post [postData]="post"
+                *ngIf="post.internalType === typeNoContent || post.internalType === typeLink"></app-default-post>
+        </div>
     </div>
 
     <!-- Footer -->

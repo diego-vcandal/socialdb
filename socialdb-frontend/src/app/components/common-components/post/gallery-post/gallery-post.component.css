@@ -1,0 +1,64 @@
+.gallery-modal-container {
+    margin: 0 auto;
+    height: 100%;
+}
+
+.gallery_carousel {
+    max-height: 100%;
+    height: inherit;
+}
+
+.gallery-image-container {
+    height: inherit;
+    display: flex;
+}
+
+.gallery-image {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    display: block;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.74);
+}
+
+.dialog-btn {
+    width: 64px;
+    height: 64px;
+    padding: 0;
+    background: 0 0;
+    border: 0;
+    opacity: .5;
+    cursor: pointer;
+    transition: opacity .15s ease;
+}
+
+.dialog-font {
+    color: white;
+    font-size: xxx-large;
+}
+
+.dialog-btn:hover,
+.dialog-btn:hover {
+    outline: 0;
+    opacity: 1;
+}
+
+.carousel-button-disabled {
+    opacity: 0.1 !important;
+}
+
+.carousel-button-left {
+    margin: auto 0 auto auto;
+}
+
+.carousel-button-right {
+    margin: auto auto auto 0;
+}
+
+.carousel-button-icon {
+    width: 64px;
+    height: 64px;
+}

@@ -10,6 +10,9 @@
         <p>{{postData.url}}</p>
         <p>{{mediaType}}</p>
 
+        <button class="test-margin" data-bs-toggle="modal" [attr.data-bs-target]="'#galleryModal' + postData.id">abrir
+            modal</button>
+
         <div *ngIf="open" #imageContainer [class]="baseClass" [hidden]="isHiddenContent">
             <div [id]="postData.id + '_carousel'" class="carousel slide" [attr.data-bs-ride]="postData.id + '_carousel'"
                 data-bs-touch="false">
@@ -17,7 +20,6 @@
                 <div class="carousel-inner">
                     <div [class]=" (i == 0 ? 'active ' : '') + 'carousel-item' "
                         *ngFor="let url of carouselArray; let i = index">
-                        <button (click)="calculateImageDimensions(i)" class="test-margin">test</button>
                         <img [src]="url" class="post-media" (load)="loadImage(i)">
                     </div>
                 </div>
@@ -41,4 +43,54 @@
         test col 3
     </div>
 
+</div>
+
+<div class="modal fade" [id]="'galleryModal' + postData.id" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="row modal-content">
+
+            <div class="col-2">
+                <button data-bs-dismiss="modal" aria-label="Close" type="button"
+                    class="dialog-btn dialog-font mt-2 ms-4">
+                    <i class="bi-x-lg"></i>
+                </button>
+            </div>
+
+            <div class="col-8 gallery-modal-container">
+                <div class="row h-100">
+                    <div class="col-2">
+                        <div class="row h-100">
+                            <button
+                                [class]="leftControlEnabled ? 'dialog-btn carousel-button-left' : 'dialog-btn carousel-button-left carousel-button-disabled'"
+                                type="button" (click)="controlButtons(-1)" [disabled]="!leftControlEnabled">
+                                <span class="carousel-control-prev-icon carousel-button-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-8 h-100">
+                        <div *ngFor="let item of carouselArray; let i = index" [hidden]="!item.active"
+                            class="gallery-image-container">
+                            <img [src]="item.url" class="gallery-image">
+                        </div>
+                    </div>
+
+                    <div class="col-2">
+                        <div class="row h-100">
+                            <button
+                                [class]="rightControlEnabled ? 'dialog-btn carousel-button-right' : 'dialog-btn carousel-button-right carousel-button-disabled'"
+                                type="button" (click)="controlButtons(1)" [disabled]="!rightControlEnabled">
+                                <span class="carousel-control-next-icon carousel-button-icon" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-2 text-end">
+                <p class="dialog-font mt-2 me-4">{{(position + 1) + '/' + maxImages}}</p>
+            </div>
+
+        </div>
+    </div>
 </div>

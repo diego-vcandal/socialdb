@@ -20,4 +20,5 @@ export interface RedditPost {
     is_gallery: boolean
     media_metadata: Object
     preview: RedditPreview
+    internalType: string
 }

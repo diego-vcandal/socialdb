@@ -4,6 +4,7 @@ import { Constants } from './constants';
 import { CookieService } from 'ngx-cookie-service';
 import { Globals } from './globals';
 import { TranslateService } from '@ngx-translate/core';
+import { RedditPost } from 'src/interfaces/reddit/post.reddit';
 
 // TODO: substituir console.log por logger
 
@@ -13,11 +14,17 @@ import { TranslateService } from '@ngx-translate/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'socialdb';
+
+    public typeVideo = Constants.MEDIA_TYPE_VIDEO;
+    public typeIframe = Constants.MEDIA_TYPE_IFRAME;
+    public typeImage = Constants.MEDIA_TYPE_IMAGE;
+    public typeGallery = Constants.MEDIA_TYPE_GALLERY;
+    public typeLink = Constants.MEDIA_TYPE_LINK;
+    public typeNoContent = Constants.MEDIA_TYPE_NO_CONTENT;
 
     private urlAuthorize = Constants.HOST + Constants.API_AUTHORIZE;
     public savedPostsDone: boolean = false;
-    public savedPosts: Array<any>;
+    public savedPosts = new Array<RedditPost>;
 
     constructor(
         private userService: UserService,
@@ -29,9 +36,7 @@ export class AppComponent {
     }
 
     ngOnInit() {
-
         this.getIdentity();
-        
     }
 
     doAuthorize() {
@@ -76,8 +81,10 @@ export class AppComponent {
                 next: (response) => {
                     if (response.status === 200) {
                         console.log(response)
+                        response.body.data.children.forEach((post: any) => {
+                            this.savedPosts.push({ ...post.data, internalType: Globals.getPostType(post.data) } as RedditPost);
+                        });
                         this.savedPostsDone = true;
-                        this.savedPosts = response.body.data.children;
                     }
                 },
                 error: (error) => {

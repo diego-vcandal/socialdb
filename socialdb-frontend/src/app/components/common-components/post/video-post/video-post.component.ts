@@ -18,12 +18,12 @@ export class VideoPostComponent extends ParentPostComponent {
     }
 
     ngOnInit(): void {
-        this.videoUrl = this.postData.secure_media.reddit_video.fallback_url
         this.videoControls = true;
 
         if (this.postData.url.endsWith('.gifv')) {
             this.videoUrl = this.postData.url.replace('.gifv', '.mp4');
-
+        } else {
+            this.videoUrl = this.postData.secure_media.reddit_video.fallback_url
         }
     }
 

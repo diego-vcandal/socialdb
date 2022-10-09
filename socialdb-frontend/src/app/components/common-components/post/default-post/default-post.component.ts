@@ -12,7 +12,9 @@ export class DefaultPostComponent extends ParentPostComponent {
 
     constructor() {
         super();
+    }
 
+    ngOnInit(): void {
         if (this.postData.post_hint === Constants.REDDIT_POST_HINT_LINK) {
             this.mediaType = Constants.MEDIA_TYPE_LINK;
         } else {
