@@ -5,7 +5,7 @@ import { ParentPostComponent } from '../parent-post.component';
 @Component({
     selector: 'app-video-post',
     templateUrl: './video-post.component.html',
-    styleUrls: ['./video-post.component.css', '../parent-post.component.css']
+    styleUrls: ['./video-post.component.scss', '../parent-post.component.scss']
 })
 export class VideoPostComponent extends ParentPostComponent {
 

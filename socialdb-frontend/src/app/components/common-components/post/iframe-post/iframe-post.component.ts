@@ -7,7 +7,7 @@ import { ParentPostComponent } from '../parent-post.component';
 @Component({
     selector: 'app-iframe-post',
     templateUrl: './iframe-post.component.html',
-    styleUrls: ['./iframe-post.component.css', '../parent-post.component.css']
+    styleUrls: ['./iframe-post.component.scss', '../parent-post.component.scss']
 })
 export class IframePostComponent extends ParentPostComponent {
 

@@ -5,7 +5,7 @@ import { ParentPostComponent } from '../parent-post.component';
 @Component({
     selector: 'app-image-post',
     templateUrl: './image-post.component.html',
-    styleUrls: ['./image-post.component.css', '../parent-post.component.css']
+    styleUrls: ['./image-post.component.scss', '../parent-post.component.scss']
 })
 export class ImagePostComponent extends ParentPostComponent {
 

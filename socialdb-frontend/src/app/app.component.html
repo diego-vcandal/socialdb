@@ -516,9 +516,9 @@
             </svg>
         </a>
     </div>
-
-    <div *ngIf="savedPostsDone">
-        <div *ngFor="let post of savedPosts" class="col-10">
+    
+    <div *ngIf="savedPostsDone" class="row">
+        <div *ngFor="let post of savedPosts" class="col-10 center-h">
             <app-image-post [postData]="post" *ngIf="post.internalType === typeImage"></app-image-post>
             <app-gallery-post [postData]="post" *ngIf="post.internalType === typeGallery"></app-gallery-post>
             <app-iframe-post [postData]="post" *ngIf="post.internalType === typeIframe"></app-iframe-post>
@@ -527,7 +527,7 @@
                 *ngIf="post.internalType === typeNoContent || post.internalType === typeLink"></app-default-post>
         </div>
     </div>
-
+    
     <!-- Footer -->
     <footer>
         Love Angular?&nbsp;
