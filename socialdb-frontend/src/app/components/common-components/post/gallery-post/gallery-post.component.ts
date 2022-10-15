@@ -34,14 +34,14 @@ export class GalleryPostComponent extends ParentPostComponent {
     }
 
     loadImage(id: number) {
-        if (this.imageContainer.nativeElement.scrollHeight > 500) {
+        if (this.imageContainer.nativeElement.scrollHeight > Constants.MAX_COLLAPSED_IMAGE_HEIGHT) {
             this.carouselImageHeightsArray.push({ id: id, baseHeigh: this.imageContainer.nativeElement.scrollHeight })
         }
     }
 
     calculateImageDimensions(id: number) {
         let entry = this.carouselImageHeightsArray.filter(e => id === e.id)[0]
-        if (entry.baseHeigh >= 500) {
+        if (entry.baseHeigh >= Constants.MAX_COLLAPSED_IMAGE_HEIGHT) {
             if (!this.loaded) {
                 this.loaded = true;
                 this.baseClass = '';

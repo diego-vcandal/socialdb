@@ -19,8 +19,8 @@
 
                 <div class="carousel-inner">
                     <div [class]=" (i == 0 ? 'active ' : '') + 'carousel-item' "
-                        *ngFor="let url of carouselArray; let i = index">
-                        <img [src]="url" class="post-media" (load)="loadImage(i)">
+                        *ngFor="let post of carouselArray; let i = index">
+                        <img [src]="post.url" class="post-media center-h" (load)="loadImage(i)">
                     </div>
                 </div>
 

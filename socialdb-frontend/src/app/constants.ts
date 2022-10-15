@@ -27,5 +27,7 @@ export class Constants {
 
     public static MEDIA_TYPE_GIFV = '.gifv';
     public static MEDIA_TYPE_MP4 = '.mp4';
+
+    public static MAX_COLLAPSED_IMAGE_HEIGHT = 500;
     
 }
