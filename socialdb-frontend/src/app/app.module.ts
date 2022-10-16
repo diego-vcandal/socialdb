@@ -23,6 +23,7 @@ import { VideoPostComponent } from './components/common-components/post/video-po
 import { DefaultPostComponent } from './components/common-components/post/default-post/default-post.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CustomSpinnerComponent } from './components/common-components/custom-spinner/custom-spinner.component';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 @NgModule({
     declarations: [
@@ -52,7 +53,11 @@ import { CustomSpinnerComponent } from './components/common-components/custom-sp
         }),
         NgxSpinnerModule,
         BrowserAnimationsModule,
-        CommonModule
+        CommonModule,
+        LoggerModule.forRoot({
+            level: NgxLoggerLevel.DEBUG,
+            serverLogLevel: NgxLoggerLevel.ERROR
+        }),
     ],
     exports: [
         NgxSpinnerModule
@@ -63,6 +68,6 @@ import { CustomSpinnerComponent } from './components/common-components/custom-sp
         { provide: HTTP_INTERCEPTORS, useClass: CRSFInterceptorService, multi: true }
     ],
     bootstrap: [AppComponent],
-    schemas:[CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

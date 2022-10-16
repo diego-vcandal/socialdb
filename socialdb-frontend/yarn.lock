@@ -4464,6 +4464,14 @@
   dependencies:
     "tslib" "^2.0.0"
 
+"ngx-logger@^5.0.11":
+  "integrity" "sha512-OP8qesmRPmu/FKGi0PYvxP4CSZMIzX+bN0UK6jtP3pOduqzCUlha91V57+tGY+lR1RNytdj2OjN2M1yfbiFtLQ=="
+  "resolved" "https://registry.npmjs.org/ngx-logger/-/ngx-logger-5.0.11.tgz"
+  "version" "5.0.11"
+  dependencies:
+    "tslib" "^2.3.0"
+    "vlq" "^1.0.0"
+
 "ngx-spinner@^14.0.0":
   "integrity" "sha512-rz7wRCW4L+eZStpWwKUZ8mW+1WWtVEs1DZLDT1DUx1v3k+pLh5BhoDzfF1YySxTqZX13I7pwl13urqzniQ/jXQ=="
   "resolved" "https://registry.npmjs.org/ngx-spinner/-/ngx-spinner-14.0.0.tgz"
@@ -5478,7 +5486,7 @@
   dependencies:
     "queue-microtask" "^1.2.2"
 
-"rxjs@^6.5.3 || ^7.4.0", "rxjs@^7.5.5", "rxjs@~7.5.0":
+"rxjs@^6.5.3 || ^7.4.0", "rxjs@^7.5.5", "rxjs@>6.0.0", "rxjs@~7.5.0":
   "integrity" "sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw=="
   "resolved" "https://registry.npmjs.org/rxjs/-/rxjs-7.5.5.tgz"
   "version" "7.5.5"
@@ -6272,6 +6280,11 @@
   "integrity" "sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg=="
   "resolved" "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
   "version" "1.1.2"
+
+"vlq@^1.0.0":
+  "integrity" "sha512-gQpnTgkubC6hQgdIcRdYGDSDc+SaujOdyesZQMv6JlfQee/9Mp0Qhnys6WxDWvQnL5WZdT7o2Ul187aSt0Rq+w=="
+  "resolved" "https://registry.npmjs.org/vlq/-/vlq-1.0.1.tgz"
+  "version" "1.0.1"
 
 "void-elements@^2.0.0":
   "integrity" "sha512-qZKX4RnBzH2ugr8Lxa7x+0V6XD9Sb/ouARtiasEQCHB1EVU4NXtmHsDDrx1dO4ne5fc3J6EW05BP1Dl0z0iung=="

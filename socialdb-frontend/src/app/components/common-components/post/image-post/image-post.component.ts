@@ -16,11 +16,6 @@ export class ImagePostComponent extends ParentPostComponent {
         this.mediaType = Constants.MEDIA_TYPE_IMAGE;
     }
 
-    ngOnInit(): void {
-        if (this.postData.url.endsWith('gif'))
-            console.log(this.postData)
-    }
-
     loadImage() {
         if (this.imageContainer && this.imageContainer.nativeElement.scrollHeight > Constants.MAX_COLLAPSED_IMAGE_HEIGHT) {
             this.baseHeigh = this.imageContainer.nativeElement.scrollHeight;

@@ -29,7 +29,6 @@ export class GalleryPostComponent extends ParentPostComponent {
         this.carouselArray = new Array();
         Object.values(this.postData.media_metadata).forEach(element => this.carouselArray.push({ url: (element.s.u as string).replaceAll('amp;', ''), active: false }));
         this.maxImages = this.carouselArray.length;
-        console.log(this.carouselArray)
         this.carouselArray[0].active = true;
     }
 

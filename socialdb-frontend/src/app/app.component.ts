@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/service/user.service';
 import { Constants } from './constants';
-import { CookieService } from 'ngx-cookie-service';
 import { Globals } from './globals';
 import { TranslateService } from '@ngx-translate/core';
 import { RedditPost } from 'src/interfaces/reddit/post.reddit';
 import { NgxSpinnerService } from 'ngx-spinner';
-
-// TODO: substituir console.log por logger
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
     selector: 'app-root',
@@ -31,7 +29,8 @@ export class AppComponent {
         private userService: UserService,
         public globals: Globals,
         public translate: TranslateService,
-        private spinner: NgxSpinnerService
+        private spinner: NgxSpinnerService,
+        private logger: NGXLogger
     ) {
         this.translate.setDefaultLang(Constants.LANGUAGE_ENGLISH);
         translate.use(this.globals.userLanguage);
@@ -53,9 +52,9 @@ export class AppComponent {
                 }
             },
             error: (error) => {
-                console.log(error)
+                this.logger.error("Error in AppComponent.logout(): ", error);
             },
-            complete: () => console.log("Request AppComponent.logout() completed")
+            complete: () => this.logger.info("Request AppComponent.logout() completed")
         })
     }
 
@@ -73,7 +72,7 @@ export class AppComponent {
                     this.globals.authorized = false;
                 }
             },
-            complete: () => console.log("Request AppComponent.getIdentity() completed")
+            complete: () => this.logger.info("Request AppComponent.getIdentity() completed")
         })
     }
 
@@ -82,21 +81,20 @@ export class AppComponent {
             this.userService.getSavedPosts(this.globals.redditIdentity.name).subscribe({
                 next: (response) => {
                     if (response.status === 200) {
-                        console.log(response)
                         response.body.data.children.forEach((post: any) => {
                             this.savedPosts.push({ ...post.data, internalType: Globals.getPostType(post.data) } as RedditPost);
                         });
                         this.spinner.hide();
                         this.savedPostsDone = true;
-                        
+
                     }
                 },
                 error: (error) => {
                     if (error.status === 401) {
-                        console.log(error)
+                        this.logger.error("Error in AppComponent.getSavedPosts(): ", error);
                     }
                 },
-                complete: () => console.log("Request AppComponent.getSavedPosts() completed")
+                complete: () => this.logger.info("Request AppComponent.getSavedPosts() completed")
             })
         }
     }
