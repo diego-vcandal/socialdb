@@ -1,0 +1,24 @@
+<div class="row post-container m-2">
+
+    <button (click)="showContent()">show</button>
+
+    <div class="col-2">
+        test col 1
+    </div>
+
+    <div class="col">
+        <p>{{postData.url}}</p>
+        <p>{{mediaType}}</p>
+
+        <div *ngIf="open" #imageContainer [class]="baseClass" [hidden]="isHiddenContent">
+            <button (click)="calculateImageDimensions()">calculateImageDimensions()</button>
+            <img [src]="postData.url" class="post-media image-media" (load)="loadImage()" (click)="openUrl()">
+        </div>
+
+    </div>
+
+    <div class="col-2">
+        test col 3
+    </div>
+
+</div>

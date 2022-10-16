@@ -1,0 +1,23 @@
+<div class="row post-container m-2">
+
+    <button (click)="showContent()">show</button>
+
+    <div class="col-2">
+        test col 1
+    </div>
+
+    <div class="col">
+        <p>{{postData.url}}</p>
+        <p>{{mediaType}}</p>
+
+        <div *ngIf="open" [hidden]="isHiddenContent">
+            <video [src]="videoUrl" autoplay loop muted [controls]="videoControls" class="post-media"></video>
+        </div>
+
+    </div>
+
+    <div class="col-2">
+        test col 3
+    </div>
+
+</div>

@@ -74,14 +74,19 @@ public class RestUtils {
 		return restTemplate.exchange(url, method, new HttpEntity<Object>(headers), classType);
 	}
 
-	public String getToken(OAuth2AuthenticationToken auth) throws NotAuthorizedException {
-		return getToken(auth, false);
+	public String getToken(OAuth2AuthenticationToken auth, boolean required) throws NotAuthorizedException {
+		return getToken(auth, false, required);
 	}
 
-	public String getToken(OAuth2AuthenticationToken auth, boolean refreshToken) throws NotAuthorizedException {
+	public String getToken(OAuth2AuthenticationToken auth, boolean refreshToken, boolean required)
+			throws NotAuthorizedException {
 
 		if (auth == null) {
-			throw new NotAuthorizedException();
+			if (required) {
+				throw new NotAuthorizedException();
+			} else {
+				return null;
+			}
 		}
 
 		String token = refreshToken ? this.getRefreshTokenValue(auth) : this.getAccessTokenValue(auth);

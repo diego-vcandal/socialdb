@@ -5,6 +5,8 @@
 export const environment = {
     production: false,
     host: 'http://localhost:8080/',
+    disableConsoleLogs: false,
+    logLevel: 1
 };
 
 /*

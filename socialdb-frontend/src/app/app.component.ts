@@ -1,35 +1,47 @@
 import { Component } from '@angular/core';
 import { UserService } from 'src/service/user.service';
 import { Constants } from './constants';
-import { CookieService } from 'ngx-cookie-service';
 import { Globals } from './globals';
 import { TranslateService } from '@ngx-translate/core';
-
-// TODO: substituir console.log por logger
+import { RedditPost } from 'src/interfaces/reddit/post.reddit';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { NGXLogger } from 'ngx-logger';
+import { PostService } from 'src/service/post.service';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'socialdb';
+
+    public typeVideo = Constants.MEDIA_TYPE_VIDEO;
+    public typeIframe = Constants.MEDIA_TYPE_IFRAME;
+    public typeImage = Constants.MEDIA_TYPE_IMAGE;
+    public typeGallery = Constants.MEDIA_TYPE_GALLERY;
+    public typeLink = Constants.MEDIA_TYPE_LINK;
+    public typeNoContent = Constants.MEDIA_TYPE_NO_CONTENT;
 
     private urlAuthorize = Constants.HOST + Constants.API_AUTHORIZE;
-    public savedPostsDone: boolean = false;
-    public savedPosts: Array<any>;
+    public getPostDone: boolean = false;
+    public loading: boolean = false
+    public post: RedditPost;
+
+    public postId: string = '';
 
     constructor(
         private userService: UserService,
+        private postService: PostService,
         public globals: Globals,
-        public translate: TranslateService
+        public translate: TranslateService,
+        private spinner: NgxSpinnerService,
+        private logger: NGXLogger
     ) {
         this.translate.setDefaultLang(Constants.LANGUAGE_ENGLISH);
         translate.use(this.globals.userLanguage);
     }
 
     ngOnInit() {
-
         this.getIdentity();
     }
 
@@ -45,9 +57,9 @@ export class AppComponent {
                 }
             },
             error: (error) => {
-                console.log(error)
+                this.logger.error("Error in AppComponent.logout(): ", error);
             },
-            complete: () => console.log("Request AppComponent.logout() completed")
+            complete: () => this.logger.info("Request AppComponent.logout() completed")
         })
     }
 
@@ -57,6 +69,7 @@ export class AppComponent {
                 if (response.status === 200) {
                     this.globals.authorized = true;
                     this.globals.redditIdentity = response.body;
+                    this.loadData();
                 }
             },
             error: (error) => {
@@ -64,8 +77,34 @@ export class AppComponent {
                     this.globals.authorized = false;
                 }
             },
-            complete: () => console.log("Request AppComponent.getIdentity() completed")
+            complete: () => this.logger.info("Request AppComponent.getIdentity() completed")
         })
+    }
+
+    loadData() {
+        if (this.postId !== '') {
+            this.getPostDone = false;
+            this.loading = true;
+            this.spinner.show();
+            this.postService.getPost(this.postId).subscribe({
+                next: (response) => {
+                    if (response.status === 200) {
+                        let postData = response.body.data.children[0].data;
+                        this.post = { ...postData, internalType: Globals.getPostType(postData) };
+                        this.getPostDone = true;
+                        this.loading = false;
+                    }
+                },
+                error: (error) => {
+                    this.logger.error("Error in AppComponent.loadData(): ", error);
+                    this.spinner.hide();
+                },
+                complete: () => {
+                    this.logger.info("Request AppComponent.loadData() completed")
+                    this.spinner.hide();
+                }
+            })
+        }
     }
 
 }
