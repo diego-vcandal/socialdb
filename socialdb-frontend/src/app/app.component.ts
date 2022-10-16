@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { RedditPost } from 'src/interfaces/reddit/post.reddit';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { NGXLogger } from 'ngx-logger';
+import { PostService } from 'src/service/post.service';
 
 @Component({
     selector: 'app-root',
@@ -22,11 +23,15 @@ export class AppComponent {
     public typeNoContent = Constants.MEDIA_TYPE_NO_CONTENT;
 
     private urlAuthorize = Constants.HOST + Constants.API_AUTHORIZE;
-    public savedPostsDone: boolean = false;
-    public savedPosts = new Array<RedditPost>;
+    public getPostDone: boolean = false;
+    public loading: boolean = false
+    public post: RedditPost;
+
+    public postId: string = '';
 
     constructor(
         private userService: UserService,
+        private postService: PostService,
         public globals: Globals,
         public translate: TranslateService,
         private spinner: NgxSpinnerService,
@@ -77,24 +82,27 @@ export class AppComponent {
     }
 
     loadData() {
-        if (this.globals.redditIdentity) {
-            this.userService.getSavedPosts(this.globals.redditIdentity.name).subscribe({
+        if (this.postId !== '') {
+            this.getPostDone = false;
+            this.loading = true;
+            this.spinner.show();
+            this.postService.getPost(this.postId).subscribe({
                 next: (response) => {
                     if (response.status === 200) {
-                        response.body.data.children.forEach((post: any) => {
-                            this.savedPosts.push({ ...post.data, internalType: Globals.getPostType(post.data) } as RedditPost);
-                        });
-                        this.spinner.hide();
-                        this.savedPostsDone = true;
-
+                        let postData = response.body.data.children[0].data;
+                        this.post = { ...postData, internalType: Globals.getPostType(postData) };
+                        this.getPostDone = true;
+                        this.loading = false;
                     }
                 },
                 error: (error) => {
-                    if (error.status === 401) {
-                        this.logger.error("Error in AppComponent.getSavedPosts(): ", error);
-                    }
+                    this.logger.error("Error in AppComponent.loadData(): ", error);
+                    this.spinner.hide();
                 },
-                complete: () => this.logger.info("Request AppComponent.getSavedPosts() completed")
+                complete: () => {
+                    this.logger.info("Request AppComponent.loadData() completed")
+                    this.spinner.hide();
+                }
             })
         }
     }

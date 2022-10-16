@@ -35,7 +35,7 @@ public class UserResource {
 	@ResponseStatus(HttpStatus.OK)
 	public Object getUser(OAuth2AuthenticationToken authentication) throws NotAuthorizedException {
 
-		String token = restUtils.getToken(authentication);
+		String token = restUtils.getToken(authentication, true);
 
 		return restUtils.doExchange(ProyectConstants.REDDIT_BASE_OAUTH_URL + "api/v1/me", HttpMethod.GET,
 				restUtils.getHeaders(token), Object.class).getBody();
@@ -47,7 +47,7 @@ public class UserResource {
 	public void logout(OAuth2AuthenticationToken authentication, HttpServletResponse response)
 			throws NotAuthorizedException {
 
-		String token = restUtils.getToken(authentication);
+		String token = restUtils.getToken(authentication, true);
 		String refreshToken = restUtils.getToken(authentication, true);
 
 		restTemplate
@@ -72,7 +72,7 @@ public class UserResource {
 			@RequestParam(required = false) String after, @RequestParam(required = false) String before)
 			throws NotAuthorizedException {
 
-		String token = restUtils.getToken(authentication);
+		String token = restUtils.getToken(authentication, true);
 
 		String baseUrl = ProyectConstants.REDDIT_BASE_OAUTH_URL + "user/" + userName + "/saved";
 

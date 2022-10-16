@@ -10,11 +10,6 @@ import { CRSFInterceptorService } from 'src/service/csrf-interceptor.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-export function HttpLoaderFactory(http: HttpClient) {
-    return new TranslateHttpLoader(http);
-}
-
 import { HeaderComponent } from './components/base-components/header/header.component';
 import { ImagePostComponent } from './components/common-components/post/image-post/image-post.component';
 import { GalleryPostComponent } from './components/common-components/post/gallery-post/gallery-post.component';
@@ -23,7 +18,14 @@ import { VideoPostComponent } from './components/common-components/post/video-po
 import { DefaultPostComponent } from './components/common-components/post/default-post/default-post.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CustomSpinnerComponent } from './components/common-components/custom-spinner/custom-spinner.component';
-import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { LoggerModule } from 'ngx-logger';
+import { FormsModule } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
 
 @NgModule({
     declarations: [
@@ -55,9 +57,10 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
         BrowserAnimationsModule,
         CommonModule,
         LoggerModule.forRoot({
-            level: NgxLoggerLevel.DEBUG,
-            serverLogLevel: NgxLoggerLevel.ERROR
+            level: environment.logLevel,
+            disableConsoleLogging: environment.disableConsoleLogs
         }),
+        FormsModule
     ],
     exports: [
         NgxSpinnerModule

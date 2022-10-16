@@ -1,6 +1,4 @@
-import { Component, ElementRef, HostListener, Inject, Input, OnInit, ViewChild } from '@angular/core';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { RedditOembed } from 'src/interfaces/reddit/oembed.reddit';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { RedditPost } from 'src/interfaces/reddit/post.reddit';
 
 @Component({

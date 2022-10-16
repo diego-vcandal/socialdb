@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Constants } from 'src/app/constants';
 import { ParentPostComponent } from '../parent-post.component';
 
@@ -22,7 +22,7 @@ export class VideoPostComponent extends ParentPostComponent {
 
         if (this.postData.url.endsWith('.gifv')) {
             this.videoUrl = this.postData.url.replace('.gifv', '.mp4');
-        } else if(this.postData.preview.images && this.postData.preview.images[0] && this.postData.preview.images[0].variants.mp4 && this.postData.preview.images[0].variants.mp4.source) {
+        } else if (this.postData.preview.images && this.postData.preview.images[0] && this.postData.preview.images[0].variants.mp4 && this.postData.preview.images[0].variants.mp4.source) {
             this.videoUrl = this.postData.preview.images[0].variants.mp4.source.url.replaceAll('amp;', '');
             this.videoControls = false;
         } else {

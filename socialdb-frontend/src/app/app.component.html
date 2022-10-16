@@ -355,6 +355,27 @@
     <button type="button" class="btn btn-secondary btn-lg" (click)="doLogOut()" tabindex="0"
         [hidden]="!this.globals.authorized">Logout</button>
 
+
+    <div class="row m-2 text-center">
+        <div class="col-12">
+            <label for="postInput" class="form-label" class="fw-bold">Post ID</label>
+            <input type="text" class="form-control" id="postInput" [(ngModel)]="postId">
+        </div>
+        <button type="button" class="btn btn-primary mt-2 w-50 mx-auto" (click)="loadData()">Submit</button>
+    </div>
+
+    <div *ngIf="loading" class="row">
+        <app-custom-spinner [fullScreen]="false"></app-custom-spinner>
+    </div>
+    <div *ngIf="getPostDone">
+        <app-image-post [postData]="post" *ngIf="post.internalType === typeImage"></app-image-post>
+        <app-gallery-post [postData]="post" *ngIf="post.internalType === typeGallery"></app-gallery-post>
+        <app-iframe-post [postData]="post" *ngIf="post.internalType === typeIframe"></app-iframe-post>
+        <app-video-post [postData]="post" *ngIf="post.internalType === typeVideo"></app-video-post>
+        <app-default-post [postData]="post"
+            *ngIf="post.internalType === typeNoContent || post.internalType === typeLink"></app-default-post>
+    </div>
+
     <!-- Resources -->
     <h2>Resources</h2>
     <p>Here are some links to help you get started:</p>
@@ -516,21 +537,6 @@
             </svg>
         </a>
     </div>
-
-    <div *ngIf="!savedPostsDone" class="row">
-        <app-custom-spinner [fullScreen]="false"></app-custom-spinner>
-    </div>
-    <div *ngIf="savedPostsDone" class="row">
-        <div *ngFor="let post of savedPosts" class="col-10 center-h">
-            <app-image-post [postData]="post" *ngIf="post.internalType === typeImage"></app-image-post>
-            <app-gallery-post [postData]="post" *ngIf="post.internalType === typeGallery"></app-gallery-post>
-            <app-iframe-post [postData]="post" *ngIf="post.internalType === typeIframe"></app-iframe-post>
-            <app-video-post [postData]="post" *ngIf="post.internalType === typeVideo"></app-video-post>
-            <app-default-post [postData]="post"
-                *ngIf="post.internalType === typeNoContent || post.internalType === typeLink"></app-default-post>
-        </div>
-    </div>
-
 
     <!-- Footer -->
     <footer>

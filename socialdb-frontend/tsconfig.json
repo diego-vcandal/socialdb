@@ -22,8 +22,9 @@
     "lib": [
       "ES2021",
       "dom"
-      
-    ]
+    ],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
