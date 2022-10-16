@@ -22,6 +22,9 @@ export class VideoPostComponent extends ParentPostComponent {
 
         if (this.postData.url.endsWith('.gifv')) {
             this.videoUrl = this.postData.url.replace('.gifv', '.mp4');
+        } else if(this.postData.preview.images && this.postData.preview.images[0] && this.postData.preview.images[0].variants.mp4 && this.postData.preview.images[0].variants.mp4.source) {
+            this.videoUrl = this.postData.preview.images[0].variants.mp4.source.url.replaceAll('amp;', '');
+            this.videoControls = false;
         } else {
             this.videoUrl = this.postData.secure_media.reddit_video.fallback_url
         }

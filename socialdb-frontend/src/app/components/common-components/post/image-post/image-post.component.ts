@@ -17,7 +17,8 @@ export class ImagePostComponent extends ParentPostComponent {
     }
 
     ngOnInit(): void {
-        console.log(this.postData)
+        if (this.postData.url.endsWith('gif'))
+            console.log(this.postData)
     }
 
     loadImage() {

@@ -22,6 +22,9 @@ export class Globals {
         } else if (post.post_hint && post.post_hint === Constants.REDDIT_POST_HINT_LINK) {
             return Constants.MEDIA_TYPE_LINK;
 
+        } else if (post.post_hint && post.post_hint === Constants.REDDIT_POST_HINT_IMAGE && post.url.match('\.redd.+\.gif$')) {
+            return Constants.MEDIA_TYPE_VIDEO;
+
         } else if (post.post_hint && post.post_hint === Constants.REDDIT_POST_HINT_IMAGE) {
             return Constants.MEDIA_TYPE_IMAGE;
         }

@@ -1,0 +1,10 @@
+.spinner-container {
+    display: flex;
+    min-height: 128px;
+    min-width: 128px;
+
+    .spinner-body {
+        flex: 1;
+        position: relative;
+    }
+}

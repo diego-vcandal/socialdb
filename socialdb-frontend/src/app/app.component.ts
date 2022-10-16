@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Globals } from './globals';
 import { TranslateService } from '@ngx-translate/core';
 import { RedditPost } from 'src/interfaces/reddit/post.reddit';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 // TODO: substituir console.log por logger
 
@@ -29,7 +30,8 @@ export class AppComponent {
     constructor(
         private userService: UserService,
         public globals: Globals,
-        public translate: TranslateService
+        public translate: TranslateService,
+        private spinner: NgxSpinnerService
     ) {
         this.translate.setDefaultLang(Constants.LANGUAGE_ENGLISH);
         translate.use(this.globals.userLanguage);
@@ -84,7 +86,9 @@ export class AppComponent {
                         response.body.data.children.forEach((post: any) => {
                             this.savedPosts.push({ ...post.data, internalType: Globals.getPostType(post.data) } as RedditPost);
                         });
+                        this.spinner.hide();
                         this.savedPostsDone = true;
+                        
                     }
                 },
                 error: (error) => {

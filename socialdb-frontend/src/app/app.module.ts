@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { APP_BASE_HREF } from '@angular/common';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule, HttpClientXsrfModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Globals } from './globals';
@@ -9,6 +9,7 @@ import { Constants } from './constants';
 import { CRSFInterceptorService } from 'src/service/csrf-interceptor.service';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -20,6 +21,8 @@ import { GalleryPostComponent } from './components/common-components/post/galler
 import { IframePostComponent } from './components/common-components/post/iframe-post/iframe-post.component';
 import { VideoPostComponent } from './components/common-components/post/video-post/video-post.component';
 import { DefaultPostComponent } from './components/common-components/post/default-post/default-post.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CustomSpinnerComponent } from './components/common-components/custom-spinner/custom-spinner.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +32,8 @@ import { DefaultPostComponent } from './components/common-components/post/defaul
         GalleryPostComponent,
         IframePostComponent,
         VideoPostComponent,
-        DefaultPostComponent
+        DefaultPostComponent,
+        CustomSpinnerComponent
     ],
     imports: [
         BrowserModule,
@@ -45,13 +49,20 @@ import { DefaultPostComponent } from './components/common-components/post/defaul
                 useFactory: HttpLoaderFactory,
                 deps: [HttpClient]
             }
-        })
+        }),
+        NgxSpinnerModule,
+        BrowserAnimationsModule,
+        CommonModule
+    ],
+    exports: [
+        NgxSpinnerModule
     ],
     providers: [
         Globals,
         { provide: APP_BASE_HREF, useValue: '/socialdb' },
         { provide: HTTP_INTERCEPTORS, useClass: CRSFInterceptorService, multi: true }
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

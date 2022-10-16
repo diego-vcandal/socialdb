@@ -13,7 +13,6 @@
         <div *ngIf="open" #imageContainer [class]="baseClass" [hidden]="isHiddenContent">
             <button (click)="calculateImageDimensions()">calculateImageDimensions()</button>
             <img [src]="postData.url" class="post-media image-media" (load)="loadImage()" (click)="openUrl()">
-            <video [src]="postData.url" autoplay loop muted [controls]="true" class="post-media"></video>
         </div>
 
     </div>
