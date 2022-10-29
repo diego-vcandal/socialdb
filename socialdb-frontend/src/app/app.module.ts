@@ -21,6 +21,8 @@ import { CustomSpinnerComponent } from './components/common-components/custom-sp
 import { LoggerModule } from 'ngx-logger';
 import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { VoteComponent } from './components/common-components/vote/vote.component';
+import { AngularSvgIconModule } from 'angular-svg-icon';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -36,7 +38,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         IframePostComponent,
         VideoPostComponent,
         DefaultPostComponent,
-        CustomSpinnerComponent
+        CustomSpinnerComponent,
+        VoteComponent
     ],
     imports: [
         BrowserModule,
@@ -60,7 +63,8 @@ export function HttpLoaderFactory(http: HttpClient) {
             level: environment.logLevel,
             disableConsoleLogging: environment.disableConsoleLogs
         }),
-        FormsModule
+        FormsModule,
+        AngularSvgIconModule.forRoot()
     ],
     exports: [
         NgxSpinnerModule

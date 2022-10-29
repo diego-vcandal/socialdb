@@ -1,0 +1,11 @@
+<div class="text-center my-2 fw-bold fs-5">
+    <div>
+        <svg-icon src="assets/icons/svg/upvote.svg" class="vote-icon p-1" (click)="upvote()"></svg-icon>
+    </div>
+    <div>
+        <p class="m-0 my-2">{{(postData.ups> 1000 ? (postData.ups /1000 | number: '1.1-1') + "k" : postData.ups)}}</p>
+    </div>
+    <div>
+        <svg-icon src="assets/icons/svg/downvote.svg" class="vote-icon p-1" (click)="downvote()"></svg-icon>
+    </div>
+</div>

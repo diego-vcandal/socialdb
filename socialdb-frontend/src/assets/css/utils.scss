@@ -1,11 +1,20 @@
+@import 'colors.scss';
+
 .center-h {
-    margin: 0 auto;
+    margin: 0 auto !important;
 }
 
 .center-v {
-    margin: auto 0;
+    margin: auto 0 !important;
 }
 
 .center-h-v {
-    margin: auto;
+    margin: auto !important;
+}
+
+.separator {
+    flex: 0 0 auto;
+    height: inherit !important;
+    width: 3px;
+    background-color: $light-gray;
 }

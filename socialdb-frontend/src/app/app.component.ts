@@ -69,6 +69,9 @@ export class AppComponent {
                 if (response.status === 200) {
                     this.globals.authorized = true;
                     this.globals.redditIdentity = response.body;
+                    /****** TODO: DELETE *******/
+                    this.postId='y0f14n';
+                    /**************************/
                     this.loadData();
                 }
             },
@@ -93,6 +96,7 @@ export class AppComponent {
                         this.post = { ...postData, internalType: Globals.getPostType(postData) };
                         this.getPostDone = true;
                         this.loading = false;
+                        console.log(this.post);
                     }
                 },
                 error: (error) => {

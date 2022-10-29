@@ -172,7 +172,7 @@
     "uuid" "8.3.2"
     "yargs" "17.4.1"
 
-"@angular/common@^14.0.0", "@angular/common@>=13.0.0", "@angular/common@14.0.2":
+"@angular/common@^14.0.0", "@angular/common@>=13.0.0", "@angular/common@>=14.0.0", "@angular/common@14.0.2":
   "integrity" "sha512-vNZpun9ymZEDJ0CWskTZZqCbuCumgYxbsZgp9nALnRAJt3fK8fRFgIZTn7smEXvbStL4PvngnvESa/t9Jd4wMg=="
   "resolved" "https://registry.npmjs.org/@angular/common/-/common-14.0.2.tgz"
   "version" "14.0.2"
@@ -202,7 +202,7 @@
   dependencies:
     "tslib" "^2.3.0"
 
-"@angular/core@^14.0.0", "@angular/core@>=13.0.0", "@angular/core@14.0.2":
+"@angular/core@^14.0.0", "@angular/core@>=13.0.0", "@angular/core@>=14.0.0", "@angular/core@14.0.2":
   "integrity" "sha512-JR+xVuNjGYEP5mdm3iQykcRFjrhSKbN5yxKxlVdKpNtUsR2Yc9Nf180Y2+Oo6KabtywGedIBH/Xd6mhwQQv3vg=="
   "resolved" "https://registry.npmjs.org/@angular/core/-/core-14.0.2.tgz"
   "version" "14.0.2"
@@ -1926,6 +1926,13 @@
     "json-schema-traverse" "^1.0.0"
     "require-from-string" "^2.0.2"
     "uri-js" "^4.2.2"
+
+"angular-svg-icon@^14.0.0":
+  "integrity" "sha512-WIEl7vp2wtacRauf/Rmfcyy5PTg5P4FHhdmm6oy3hWOY9aK/QEqEW5zzLKDXsh1djRlChLWnnC3ptaPC0wyHDw=="
+  "resolved" "https://registry.npmjs.org/angular-svg-icon/-/angular-svg-icon-14.0.0.tgz"
+  "version" "14.0.0"
+  dependencies:
+    "tslib" "^2.3.1"
 
 "ansi-colors@4.1.1":
   "integrity" "sha512-JoX0apGbHaUJBNl6yF+p6JAFYZ666/hhCGKN5t9QFjbJQKUU/g8MNbFDbvfrgKXvI1QpZplPOnwIo99lX/AAmA=="
@@ -5486,7 +5493,7 @@
   dependencies:
     "queue-microtask" "^1.2.2"
 
-"rxjs@^6.5.3 || ^7.4.0", "rxjs@^7.5.5", "rxjs@>6.0.0", "rxjs@~7.5.0":
+"rxjs@^6.5.3 || ^7.4.0", "rxjs@^7.5.5", "rxjs@>=6.6.3", "rxjs@>6.0.0", "rxjs@~7.5.0":
   "integrity" "sha512-sy+H0pQofO95VDmFLzyaw9xNJU4KTRSwQIGM6+iG3SypAtCiLDzpeG8sJrNCWn2Up9km+KhkvTdbkrdy+yzZdw=="
   "resolved" "https://registry.npmjs.org/rxjs/-/rxjs-7.5.5.tgz"
   "version" "7.5.5"
@@ -6159,7 +6166,7 @@
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-1.14.1.tgz"
   "version" "1.14.1"
 
-"tslib@^2.0.0", "tslib@^2.1.0", "tslib@^2.3.0", "tslib@2.4.0":
+"tslib@^2.0.0", "tslib@^2.1.0", "tslib@^2.3.0", "tslib@^2.3.1", "tslib@2.4.0":
   "integrity" "sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ=="
   "resolved" "https://registry.npmjs.org/tslib/-/tslib-2.4.0.tgz"
   "version" "2.4.0"

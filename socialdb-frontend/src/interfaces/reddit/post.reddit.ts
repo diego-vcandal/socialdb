@@ -21,4 +21,7 @@ export interface RedditPost {
     media_metadata: Object
     preview: RedditPreview
     internalType: string
+
+    ups: number
+    uppove_ratio: number
 }

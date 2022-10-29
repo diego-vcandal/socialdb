@@ -367,7 +367,7 @@
     <div *ngIf="loading" class="row">
         <app-custom-spinner [fullScreen]="false"></app-custom-spinner>
     </div>
-    <div *ngIf="getPostDone">
+    <div *ngIf="getPostDone" class="row w-100">
         <app-image-post [postData]="post" *ngIf="post.internalType === typeImage"></app-image-post>
         <app-gallery-post [postData]="post" *ngIf="post.internalType === typeGallery"></app-gallery-post>
         <app-iframe-post [postData]="post" *ngIf="post.internalType === typeIframe"></app-iframe-post>

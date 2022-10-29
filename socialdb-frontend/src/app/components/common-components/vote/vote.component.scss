@@ -1,0 +1,11 @@
+@import '../../../../styles.scss';
+
+.vote-icon {
+    color: $light-gray;
+    border-radius: 0.5rem;
+}
+
+.vote-icon:hover {
+    background-color: $default-gray-hover;
+    cursor: pointer;
+}

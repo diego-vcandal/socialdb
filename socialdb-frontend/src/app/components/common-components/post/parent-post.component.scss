@@ -1,6 +1,14 @@
+@import '../../../../styles.scss';
+
 .post-container {
-    border: 1px solid #b1b1b1;
-    border-radius: 0.5rem;
+    border: 2px solid $light-gray;
+    background-color: $default-gray;
+    color: $light-gray;
+    border-radius: 0.6rem;
+
+    /*** TODO ***/
+    min-height: 100px;
+    /***********/
 
     .post-media-container {
         max-height: 500px;
