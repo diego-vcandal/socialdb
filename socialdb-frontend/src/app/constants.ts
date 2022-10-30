@@ -30,5 +30,6 @@ export class Constants {
     public static MEDIA_TYPE_MP4 = '.mp4';
 
     public static MAX_COLLAPSED_IMAGE_HEIGHT = 500;
+    public static MAX_TITLE_LENGTH = 300;
     
 }

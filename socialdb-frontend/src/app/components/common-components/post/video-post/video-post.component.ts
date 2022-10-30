@@ -18,6 +18,8 @@ export class VideoPostComponent extends ParentPostComponent {
     }
 
     ngOnInit(): void {
+        this.preparePostData();
+        
         this.videoControls = true;
 
         if (this.postData.url.endsWith('.gifv')) {

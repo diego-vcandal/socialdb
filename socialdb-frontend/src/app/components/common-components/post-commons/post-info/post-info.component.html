@@ -1,0 +1,15 @@
+<div class="my-2">
+    <div class="row post-title px-2">
+        <span class="fs-5 p-0 me-2">{{formattedTitle}}</span>
+        <a [href]="postData.url" class="fs-6 p-0">{{formattedUrl}}</a>
+    </div>
+    <div class="row px-2 mt-1">
+        <svg-icon [src]="'assets/icons/svg/' + (controls.isHiddenContent ? 'expand.svg' : 'collapse.svg' )"
+            class="content-icon p-1 w-auto" (click)="controls.isHiddenContent ? expand() : collapse()"></svg-icon>
+        <div class="my-1 mx-1 p-0 separator"></div>
+        <div class="w-auto d-flex">
+            <span class="fs-6 p-0 pe-2 center-v">/r/TestSubReddit</span>
+            <span class="fs-7 p-0 center-v poster-info">Posted by /u/reithkor 1 month ago</span>
+        </div>
+    </div>
+</div>

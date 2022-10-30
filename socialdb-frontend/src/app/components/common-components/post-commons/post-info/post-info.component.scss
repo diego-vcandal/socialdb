@@ -1,0 +1,19 @@
+@import '../../../../../styles.scss';
+
+.post-title {
+    display: inline;
+}
+
+.poster-info {
+    color: $secondary-gray;
+}
+
+.content-icon {
+    color: $light-gray;
+    border-radius: 0.5rem;
+}
+
+.content-icon:hover {
+    background-color: $default-gray-hover;
+    cursor: pointer;
+}

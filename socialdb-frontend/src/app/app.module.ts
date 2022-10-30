@@ -21,8 +21,9 @@ import { CustomSpinnerComponent } from './components/common-components/custom-sp
 import { LoggerModule } from 'ngx-logger';
 import { FormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { VoteComponent } from './components/common-components/vote/vote.component';
+import { VoteComponent } from './components/common-components/post-commons/vote/vote.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
+import { PostInfoComponent } from './components/common-components/post-commons/post-info/post-info.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -39,7 +40,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         VideoPostComponent,
         DefaultPostComponent,
         CustomSpinnerComponent,
-        VoteComponent
+        VoteComponent,
+        PostInfoComponent
     ],
     imports: [
         BrowserModule,

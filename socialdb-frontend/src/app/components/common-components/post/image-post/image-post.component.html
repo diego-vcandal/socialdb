@@ -10,7 +10,7 @@
         <p>{{postData.url}}</p>
         <p>{{mediaType}}</p>
 
-        <div *ngIf="open" #imageContainer [class]="baseClass" [hidden]="isHiddenContent">
+        <div *ngIf="controls.open" #imageContainer [class]="baseClass" [hidden]="controls.isHiddenContent">
             <button (click)="calculateImageDimensions()">calculateImageDimensions()</button>
             <img [src]="postData.url" class="post-media image-media" (load)="loadImage()" (click)="openUrl()">
         </div>

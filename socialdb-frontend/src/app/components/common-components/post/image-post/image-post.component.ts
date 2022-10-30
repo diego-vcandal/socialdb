@@ -16,6 +16,10 @@ export class ImagePostComponent extends ParentPostComponent {
         this.mediaType = Constants.MEDIA_TYPE_IMAGE;
     }
 
+    ngOnInit(): void {
+        this.preparePostData();
+    }
+
     loadImage() {
         if (this.imageContainer && this.imageContainer.nativeElement.scrollHeight > Constants.MAX_COLLAPSED_IMAGE_HEIGHT) {
             this.baseHeigh = this.imageContainer.nativeElement.scrollHeight;
@@ -24,11 +28,11 @@ export class ImagePostComponent extends ParentPostComponent {
 
     calculateImageDimensions() {
         if (this.baseHeigh >= Constants.MAX_COLLAPSED_IMAGE_HEIGHT) {
-            if (!this.loaded) {
-                this.loaded = true;
+            if (!this.controls.loaded) {
+                this.controls.loaded = true;
                 this.baseClass = '';
             } else {
-                this.loaded = false;
+                this.controls.loaded = false;
                 this.baseClass = 'post-media-container';
             }
         }

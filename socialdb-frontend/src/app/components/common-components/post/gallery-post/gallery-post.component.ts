@@ -26,6 +26,7 @@ export class GalleryPostComponent extends ParentPostComponent {
     }
 
     ngOnInit(): void {
+        this.preparePostData();
         this.carouselArray = new Array();
         Object.values(this.postData.media_metadata).forEach(element => this.carouselArray.push({ url: (element.s.u as string).replaceAll('amp;', ''), active: false }));
         this.maxImages = this.carouselArray.length;
@@ -41,11 +42,11 @@ export class GalleryPostComponent extends ParentPostComponent {
     calculateImageDimensions(id: number) {
         let entry = this.carouselImageHeightsArray.filter(e => id === e.id)[0]
         if (entry.baseHeigh >= Constants.MAX_COLLAPSED_IMAGE_HEIGHT) {
-            if (!this.loaded) {
-                this.loaded = true;
+            if (!this.controls.loaded) {
+                this.controls.loaded = true;
                 this.baseClass = '';
             } else {
-                this.loaded = false;
+                this.controls.loaded = false;
                 this.baseClass = 'post-media-container';
             }
         }

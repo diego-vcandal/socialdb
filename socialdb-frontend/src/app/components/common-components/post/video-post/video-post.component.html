@@ -10,7 +10,7 @@
         <p>{{postData.url}}</p>
         <p>{{mediaType}}</p>
 
-        <div *ngIf="open" [hidden]="isHiddenContent">
+        <div *ngIf="controls.open" [hidden]="controls.isHiddenContent">
             <video [src]="videoUrl" autoplay loop muted [controls]="videoControls" class="post-media"></video>
         </div>
 

@@ -1,4 +1,7 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Globals } from 'src/app/globals';
+
+import { PostControls } from 'src/interfaces/post-controls';
 import { RedditPost } from 'src/interfaces/reddit/post.reddit';
 
 @Component({
@@ -17,26 +20,27 @@ export abstract class ParentPostComponent {
     public baseClass: string = 'post-media-container';
     public baseHeigh: number;
 
-    public isHiddenContent: boolean = true;
-    public loaded: boolean = false;
-    public open: boolean = false;
+    public controls: PostControls = { isHiddenContent: true, loaded: false, open: false };
 
-    constructor() {
-    }
+    constructor() { }
 
     openUrl() {
         window.open(this.postData.url, '_blank');
     }
 
     showContent() {
-        if (!this.isHiddenContent) {
-            this.isHiddenContent = true;
+        if (!this.controls.isHiddenContent) {
+            this.controls.isHiddenContent = true;
         } else {
-            this.isHiddenContent = false;
-            if (!this.open) {
-                this.open = true;
+            this.controls.isHiddenContent = false;
+            if (!this.controls.open) {
+                this.controls.open = true;
             }
         }
+    }
+
+    preparePostData() {
+        this.postData.title = Globals.htmlDecode(this.postData.title);
     }
 
 }

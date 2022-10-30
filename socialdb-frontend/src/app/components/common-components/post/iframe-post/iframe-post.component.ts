@@ -25,6 +25,7 @@ export class IframePostComponent extends ParentPostComponent {
     }
 
     ngOnInit(): void {
+        this.preparePostData();
         let splittedUrl = this.postData.url.split('/');
         let url = 'https://' + this.postData.domain + '/ifr/' + splittedUrl[splittedUrl.length - 1];
 
@@ -44,12 +45,12 @@ export class IframePostComponent extends ParentPostComponent {
 
     override showContent() {
 
-        if (!this.isHiddenContent) {
-            this.isHiddenContent = true;
+        if (!this.controls.isHiddenContent) {
+            this.controls.isHiddenContent = true;
         } else {
-            this.isHiddenContent = false;
-            if (!this.open) {
-                this.open = true;
+            this.controls.isHiddenContent = false;
+            if (!this.controls.open) {
+                this.controls.open = true;
                 setTimeout(() => {
                     this.resizeIframe();
                 }, 0);

@@ -70,7 +70,7 @@ export class AppComponent {
                     this.globals.authorized = true;
                     this.globals.redditIdentity = response.body;
                     /****** TODO: DELETE *******/
-                    this.postId='y0f14n';
+                    this.postId='yhc0tm';
                     /**************************/
                     this.loadData();
                 }

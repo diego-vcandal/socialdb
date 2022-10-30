@@ -10,7 +10,7 @@
         <p>{{postData.url}}</p>
         <p>{{mediaType}}</p>
 
-        <div *ngIf="open" #iframeContainer [hidden]="isHiddenContent">
+        <div *ngIf="controls.open" #iframeContainer [hidden]="controls.isHiddenContent">
             <div>
                 <iframe [src]="safeUrl" frameborder='0' scrolling='no' [width]="iframeWidth" [height]="iframeHeight"
                     allowfullscreen [attr.allow]="allow" class="post-media"></iframe>
