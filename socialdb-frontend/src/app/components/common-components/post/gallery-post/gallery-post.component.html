@@ -1,9 +1,9 @@
 <div class="col post-container m-2 center-h">
     <div class="row w-100 center-h">
-        <app-vote [postData]="postData" class="col-1"></app-vote>
+        <app-vote [postData]="postData" class="col-1 fix-width"></app-vote>
         <div class="my-3 mx-1 p-0 separator"></div>
-        <app-post-info [postData]="postData" [controls]="controls" class="col-9">
-        </app-post-info>
-        <div class="my-3 p-0 separator"></div>
+        <app-post-info [postData]="postData" [controls]="controls" class="col"></app-post-info>
+        <div class="my-3 p-0 separator hide-md"></div>
+        <app-post-controls [postData]="postData" class="col-2 fix-width"></app-post-controls>
     </div>
 </div>

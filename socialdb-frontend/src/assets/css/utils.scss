@@ -18,3 +18,40 @@
     width: 3px;
     background-color: $light-gray;
 }
+
+.fix-width {
+    max-width: max-content;
+    min-width: max-content;
+}
+
+@media (max-width: 576px) {
+    .hide-sm {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .hide-md {
+        display: none;
+    }
+}
+
+@media (max-width: 992px) {
+    .hide-lg {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .hide-xl {
+        display: none;
+    }
+}
+
+.text-break {
+    word-break: break-word;
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}

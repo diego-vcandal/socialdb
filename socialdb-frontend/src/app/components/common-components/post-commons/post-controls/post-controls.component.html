@@ -1,0 +1,18 @@
+<div class="hide-md text-center my-2 fw-semibold" (click)="dohide()">
+    <div class="option-container">
+            <svg-icon src="assets/icons/svg/comment.svg" class="content-icon p-1 me-1" (click)="comment()"></svg-icon>
+        <p class="center-v">{{(comentarios> 1000 ? (comentarios /1000 | number: '1.1-1') + "k" : comentarios)}} Comentarios</p>
+    </div>
+    <div class="option-container">
+        <svg-icon src="assets/icons/svg/share.svg" class="content-icon p-1 me-1" (click)="share()"></svg-icon>
+        <p class="center-v">Compartir</p>
+    </div>
+    <div class="option-container">
+        <svg-icon [src]="'assets/icons/svg/' + (saved ? 'dont-save.svg' : 'save.svg' )" class="content-icon p-1 me-1" (click)="save()"></svg-icon>
+        <p class="center-v">{{saved ? "Guardar" : "No guardar"}}</p>
+    </div>
+    <div class="option-container">
+        <svg-icon src="assets/icons/svg/more-dots.svg" class="content-icon p-1 me-1" (click)="more()"></svg-icon>
+        <p class="center-v">Más opciones</p>
+    </div>
+</div>

@@ -24,6 +24,7 @@ import { environment } from 'src/environments/environment';
 import { VoteComponent } from './components/common-components/post-commons/vote/vote.component';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { PostInfoComponent } from './components/common-components/post-commons/post-info/post-info.component';
+import { PostControlsComponent } from './components/common-components/post-commons/post-controls/post-controls.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -41,7 +42,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         DefaultPostComponent,
         CustomSpinnerComponent,
         VoteComponent,
-        PostInfoComponent
+        PostInfoComponent,
+        PostControlsComponent
     ],
     imports: [
         BrowserModule,
